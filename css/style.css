@@ -1,0 +1,16 @@
+col {
+    float:left;
+}
+
+#gif-input {
+    margin-bottom: 10px;
+}
+
+.gif-btn {
+    margin: 10px 2px;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
