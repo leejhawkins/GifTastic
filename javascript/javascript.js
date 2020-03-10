@@ -6,7 +6,9 @@ window.onload = function() {
         if (newGif==="") {
          return; 
         } else {
-        gifs.push(newGif);
+        favorites.push(newGif);
+        console.log(newGif)
+        localStorage.setItem("favorites",JSON.stringify(favorites))
         populateButtons();
         getGifs(newGif);
         $("#gif-input").val("")
@@ -20,14 +22,27 @@ window.onload = function() {
     populateButtons()
 }
 var gifs = ["Big Mouth","BoJack Horseman","Rick and Morty","Aqua Teen Hunger Force", "Archer",
-"The Simpsons","Bob's Burger","Schitt's Creek","Arrested Development","30 Rock","The Office","South Park"]
+"The Simpsons","Bob's Burger","Schitt's Creek","Arrested Development","30 Rock","The Office","Mystery Science Theater 3000"]
+var favorites = JSON.parse(localStorage.getItem("favorites"));
+if (!Array.isArray(favorites)) {
+    favorites = [];
+  }
 function populateButtons (){
     $("#button-area").empty()
-    for (var i=0;i<gifs.length;i++) {
+    for (var i=0;i<12;i++) {
         var newButton=$('<button>')
         newButton.addClass("btn btn-info gif-btn")
         newButton.attr("data-text",gifs[i]);
         newButton.text(gifs[i])
+        $("#button-area").append(newButton)
+    }
+    $("#button-area").append("<h2>"+"Favorites: "+"</h2>")
+    for (var i=0;i<favorites.length;i++) {
+        var newButton=$('<button>')
+        console.log(gifs[i])
+        newButton.addClass("btn btn-info gif-btn")
+        newButton.attr("data-text",favorites[i]);
+        newButton.text(favorites[i])
         $("#button-area").append(newButton)
     }
 }
@@ -46,7 +61,7 @@ function getGifs (text) {
         method: "GET"
       }).then(function(response) {
        
-    
+        $("#instructions").text("Click to animate!!!")
         var results = response.data
         
         
@@ -54,7 +69,7 @@ function getGifs (text) {
         for (var i = 0; i < results.length; i++) {
           var gifDiv = $("<div>");
           gifDiv.addClass("col mb-4")
-          console.log(results[i])
+         
           if (i%3 == 0) {
               var newRow =$("<div>")
               newRow.addClass("row row-cols-2 row-cols-md-3")

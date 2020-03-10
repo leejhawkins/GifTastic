@@ -2,7 +2,10 @@ col {
     float:left;
 }
 #input-div {
-    margin-bottom: 20px;
+    margin: 20px;
+    position: relative;
+    bottom: 50px;
+    float: right;
 }
 
 #gif-input {
@@ -11,13 +14,15 @@ col {
 
 .gif-btn {
     margin: 10px 2px;
-}
+} 
 
 img {
-    width: 200px;
+
     height: 200px;
+    max-width: 250px ;
+}
+#instructions {
+    position: relative;
+    top: 100px;
 }
 
-p {
-    overflow-wrap: normal;
-}
