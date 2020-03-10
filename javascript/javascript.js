@@ -61,15 +61,18 @@ function getGifs (text) {
               $("#gif-area").append(newRow)
           }
           var p = $("<p>");
+          var title = $("<p>");
           p.text(results[i].rating);
+          title.text(results[i].title)
           var gif =$("<img>");
           gif.addClass("gif")
-          gif.attr("src", results[i].images.fixed_height.url);
+          gif.attr("src", results[i].images.fixed_height_still.url);
           gif.attr("data-still",results[i].images.fixed_height_still.url)
           gif.attr("data-animate",results[i].images.fixed_height.url)
-          gif.attr("data-state","animate")
-          gifDiv.append(p);
+          gif.attr("data-state","still")
           gifDiv.append(gif);
+          gifDiv.append(p);
+          gifDiv.append(title);
           newRow.append(gifDiv);
         }
       })
@@ -77,11 +80,11 @@ function getGifs (text) {
 function changeState() {
     var state = $(this).attr("data-state");
    
-    if (state === "animate") {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
-    } else {
+    if (state === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
     }
 }

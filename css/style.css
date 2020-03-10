@@ -1,6 +1,9 @@
 col {
     float:left;
 }
+#input-div {
+    margin-bottom: 20px;
+}
 
 #gif-input {
     margin-bottom: 10px;
@@ -13,4 +16,8 @@ col {
 img {
     width: 200px;
     height: 200px;
+}
+
+p {
+    overflow-wrap: normal;
 }
